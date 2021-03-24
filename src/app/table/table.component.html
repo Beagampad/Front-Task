@@ -1,0 +1,45 @@
+<div class="container">
+    <section class="mat-typography">
+        <h2 class="title">Exchange value: $ {{exchange}}</h2>
+        <h1>Accounts</h1>
+    
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Account name </th>
+            <td mat-cell routerLink="/detail/{{element.id_dataset}}" *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Category </th>
+            <td mat-cell routerLink="/detail/{{element.id_dataset}}" *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="tags">
+            <th mat-header-cell *matHeaderCellDef> Tags </th>
+            <td mat-cell routerLink="/detail/{{element.id_dataset}}" *matCellDef="let element"> {{element.tags}} </td>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell routerLink="/detail/{{element.id_dataset}}" *matCellDef="let element"> {{element.balance}}BTC /{{dollars_balance}}$ </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="available">
+                <th mat-header-cell *matHeaderCellDef> Available </th>
+                <td mat-cell routerLink="/detail/{{element.id_dataset}}" *matCellDef="let element"> {{element.available}}BTC /{{dollars_balance}}$ </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row [ngClass]="{'highlight-up': row.increment == 'up','highlight-down': row.increment == 'down'}" *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+        </table>
+    </section>
+
+</div>
+  
+  

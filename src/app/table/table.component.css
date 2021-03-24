@@ -1,6 +1,8 @@
 
 .container{
     padding: 50px;
+    background-color: #80808021;
+    height: 100%;
 }
 .title{
     text-align: center;
@@ -16,6 +18,9 @@ td.mat-cell:focus{
 }
 tr.mat-row:hover{
     background-color: #d1d4d27e;
+}
+th.mat-header-cell{
+    font-size: 15px;
 }
 .highlight-up{
     background-color: rgb(233, 205, 205);

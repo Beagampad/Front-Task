@@ -35,9 +35,9 @@ export class TableService {
       );
     }
   
-    /** GET Dataset by id */
-    getDatasetbyId(id: string): Observable<any> {
-      const url = `${this.APIUrl}/dataset/id=${id}`;
+    // GET Dataset by id 
+    getDatasetbyId(id: number): Observable<any> {
+      const url = `${this.APIUrl}/dataset/${id}`;
       return this.http.get<any>(url).pipe(
         catchError(this.handleError<Dataset>(`getDataset id=${id}`))
         );
@@ -53,15 +53,6 @@ export class TableService {
       );
     }
 
-    // Get Exchange
-    getUpdates(): Observable<any> {
-      const url = `${this.APIUrl}/seed`;
-      return this.http.get<any>(url)
-      .pipe(
-        map(data => data),
-         catchError(this.handleError('getUpdates', []))
-      );
-    }
 }
 
 

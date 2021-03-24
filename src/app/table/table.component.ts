@@ -20,7 +20,6 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getUpdates(); // get data BBDD
     this.getData();
 
     //A new exchange rate should be pushed to the frontend every 30 seconds. (simulated way)
@@ -30,6 +29,7 @@ export class TableComponent implements OnInit {
 
   }
 
+  // Get Data from API
    getData(): void {
      this.getExchange();
     this.tableService.getAll().subscribe((res) => {
@@ -43,20 +43,14 @@ export class TableComponent implements OnInit {
     });
   }
 
+  // Get Exchange value from API
   getExchange(): void {
     this.tableService.getExchange().subscribe((res) => {
-          //console.log('exchange', res);
           this.exchange = res;
     });
   }
 
-  getUpdates(): void {
-    this.tableService.getUpdates().subscribe((res) => {
-          console.log('exchange', res);
-          //this.exchange = res;
-    });
-  }
-
+  // Calculate Dollars Value
   BTCtoDollar(balance:number, available:number){
 
     this.dollars_balance = balance*this.exchange;

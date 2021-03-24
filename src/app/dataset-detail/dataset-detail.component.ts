@@ -5,6 +5,9 @@ import { DetailDataset } from '../detail-dataset';
 import { TableService } from '../table.service';
 
 
+
+///-------- MOCK DATA ------
+
 const ELEMENT_DATA: DetailDataset[] = [
   {date: '15/03/2018', orderId: 'SSD14', orderCode: 'DEPOSIT', type: 'Payment received', credit:51515, balance: 515221},
   {date:  '15/03/2018', orderId: 'D51D54F', orderCode: 'ON RAMP', type: 'Payment received', credit:21445, balance:24244},
@@ -26,7 +29,6 @@ const ELEMENT_DATA: DetailDataset[] = [
 })
 export class DatasetDetailComponent implements OnInit {
 
-  //displayedColumns: string[] = ['Confirmed_Date', 'OrderID', 'Order_Code', 'Transaction_Type', 'Credit', 'Balance'];
   displayedColumns: string[] = ['date', 'orderId', 'orderCode', 'type', 'credit', 'balance']
   detail_dataset:Dataset | undefined;
   dataSource:DetailDataset[] = [];
@@ -37,7 +39,7 @@ export class DatasetDetailComponent implements OnInit {
     // First get the id from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const IdFromRoute = Number(routeParams.get('id_dataset'));
-    this.dataSource = ELEMENT_DATA;
+    this.dataSource = ELEMENT_DATA; 
 
     this.detail_dataset = this.getDatasetbyId(IdFromRoute);
     console.log('detail', this.detail_dataset);
@@ -45,6 +47,9 @@ export class DatasetDetailComponent implements OnInit {
   }
     // Find detail by ID
     getDatasetbyId(IdFromRoute:number){
+      this.tableService.getDatasetbyId(IdFromRoute).subscribe((res) => {
+        console.log('dataset',res);
+  });
 
      return  this.tableService.data.find((x => x.id_dataset === IdFromRoute))
   }
